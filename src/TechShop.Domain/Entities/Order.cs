@@ -12,8 +12,8 @@ namespace TechShop.Domain.Entities
 {
     public class Order : AggregateRoot
     {
-        public Order(decimal totalPrice, Customer customer, DeliveryAddress deliveryAddress, PaymentAddress paymentAddress,
-                     PaymentInfo paymentInfo, List<OrderItem> itens, DateTime createdAt, EOrderStatus status)
+        public Order(Customer customer, DeliveryAddress deliveryAddress, PaymentAddress paymentAddress,
+                     PaymentInfo paymentInfo, List<OrderItem> itens)
         {
             Id = Guid.NewGuid();
             TotalPrice = itens.Sum(x => x.Quantity * x.Price);
