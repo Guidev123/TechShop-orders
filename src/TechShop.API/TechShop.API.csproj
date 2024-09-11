@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechShop.Application\TechShop.Application.csproj" />
+    <ProjectReference Include="..\TechShop.Infrasctructure\TechShop.Infrasctructure.csproj" />
   </ItemGroup>
 
 </Project>

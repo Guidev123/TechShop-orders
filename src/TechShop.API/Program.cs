@@ -1,9 +1,11 @@
 using TechShop.Application.Configuration;
+using TechShop.Infrasctructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
