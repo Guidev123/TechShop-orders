@@ -17,8 +17,10 @@ namespace TechShop.Infrasctructure.Persistence
             _configuration = configuration;
 
             string connectionString = _configuration.GetConnectionString("DbConnection") ?? string.Empty;
+
             MongoUrl mongoUrl = MongoUrl.Create(connectionString);
             MongoClient mongoClient = new MongoClient(mongoUrl);
+
             _database = mongoClient.GetDatabase(mongoUrl.DatabaseName);
         }
         public IMongoDatabase? Database => _database;

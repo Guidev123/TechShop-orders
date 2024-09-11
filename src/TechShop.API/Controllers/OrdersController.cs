@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TechShop.Application.Commands;
 using TechShop.Application.Queries;
+using TechShop.Domain.Entities;
 
 namespace TechShop.API.Controllers
 {
@@ -25,7 +26,7 @@ namespace TechShop.API.Controllers
         {
             var orderId = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetOrderByIdAsync), orderId, command);
+            return Ok(orderId);
         }
     }
 }

@@ -16,14 +16,26 @@ namespace TechShop.Infrasctructure.Configuration
 {
     public static class InfrastructureModule
     {
-        public static void AddInfrastructure(this IServiceCollection services)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             AddRepositories(services);
-            AddMongoMiddleware(services);
+            AddMongoMiddleware(services, configuration);
         }
-        public static void AddMongoMiddleware(this IServiceCollection services)
+        public static void AddMongoMiddleware(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<MongoDbService>();
+
+            services.AddSingleton<IMongoClient>(sp =>
+            {
+                var connectionString = configuration.GetConnectionString("DbConnection");
+                return new MongoClient(connectionString);
+            });
+
+            services.AddScoped<IMongoDatabase>(sp =>
+            {
+                var client = sp.GetRequiredService<IMongoClient>();
+                return client.GetDatabase("dev-db");
+            });
         }
         public static void AddRepositories(this IServiceCollection services)
         {
