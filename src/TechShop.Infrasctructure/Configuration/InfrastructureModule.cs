@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechShop.Domain.Notifications;
 using TechShop.Domain.Repositories;
+using TechShop.Infrasctructure.Notifications;
 using TechShop.Infrasctructure.Persistence;
 using TechShop.Infrasctructure.Persistence.Repositories;
 
@@ -18,7 +20,7 @@ namespace TechShop.Infrasctructure.Configuration
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            AddRepositories(services);
+            AddServices(services);
             AddMongoMiddleware(services, configuration);
         }
         public static void AddMongoMiddleware(this IServiceCollection services, IConfiguration configuration)
@@ -37,9 +39,10 @@ namespace TechShop.Infrasctructure.Configuration
                 return client.GetDatabase("dev-db");
             });
         }
-        public static void AddRepositories(this IServiceCollection services)
+        public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<INotificator, Notificator>();
         }
     }
 }
