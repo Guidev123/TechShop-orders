@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechShop.Domain.Notifications;
 using TechShop.Domain.Repositories;
+using TechShop.Infrasctructure.CacheStorage;
 using TechShop.Infrasctructure.MessageBus;
 using TechShop.Infrasctructure.Notifications;
 using TechShop.Infrasctructure.Persistence;
@@ -25,6 +26,7 @@ namespace TechShop.Infrasctructure.Configuration
             AddServices(services);
             AddMongoMiddleware(services, configuration);
             AddMessageBus(services);
+            AddRedisCache(services);
         }
         public static void AddMongoMiddleware(this IServiceCollection services, IConfiguration configuration)
         {
@@ -83,6 +85,15 @@ namespace TechShop.Infrasctructure.Configuration
             }
             return sb.ToString();
 
+        }
+        public static void AddRedisCache(this IServiceCollection services)
+        {
+            services.AddStackExchangeRedisCache(op =>
+            {
+                op.InstanceName = "orders-cache";
+                op.Configuration = "localhost:6379";
+            });
+            services.AddTransient<ICacheService, CacheService>();
         }
     }
 }
