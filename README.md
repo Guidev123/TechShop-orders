@@ -1,14 +1,14 @@
-  <h1>Microsserviço de Pedidos</h1>
+<h1>Order Microservice</h1>
 
-  <p>Este projeto implementa um microsserviço de pedidos utilizando os conceitos de arquitetura de microsserviços com <strong>ASP.NET</strong>.</p>
+<p>This project implements an order microservice using the concepts of microservices architecture with <strong>ASP.NET Core</strong>.</p>
 
-  <h2>Tecnologias Utilizadas</h2>
-  <ul>
+<h2>Technologies Used</h2>
+<ul>
     <li>ASP.NET Core</li>
     <li>Domain Driven Design (DDD)</li>
-    <li>Arquitetura Limpa</li>
-    <li>CQRS</li>
+    <li>Clean Architecture</li>
+    <li>CQRS (Command Query Responsibility Segregation)</li>
     <li>NoSQL MongoDB</li>
-    <li>Event-Driven Architecture com RabbitMQ</li>
-    <li>Cache Distribuído com Redis</li>
-  </ul>
+    <li>Event-Driven Architecture with RabbitMQ</li>
+    <li>Distributed Cache with Redis</li>
+</ul>
